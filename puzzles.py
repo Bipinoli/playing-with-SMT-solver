@@ -73,3 +73,4 @@ def sudoku():
     m = solver.model()
     solution = [ [m.evaluate(board[i][j]) for j in range(9)] for i in range(9) ]
     print_matrix(solution)
+    
