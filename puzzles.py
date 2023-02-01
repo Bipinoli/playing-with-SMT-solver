@@ -1,3 +1,5 @@
+## Learning from: https://infosecadalid.com/2021/08/27/my-introduction-to-z3-and-solving-satisfiability-problems/
+
 from z3 import *
 
 def buying_animals():
