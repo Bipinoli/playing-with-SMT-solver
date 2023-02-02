@@ -75,4 +75,29 @@ def sudoku():
     m = solver.model()
     solution = [ [m.evaluate(board[i][j]) for j in range(9)] for i in range(9) ]
     print_matrix(solution)
-    
+
+
+def eight_queens():
+    '''
+    Place eight chess queens on an 8x8 chessboard so that no two queens attack each other. 
+    Thus, a solution requires that no two queens share the same row, column, or diagonal.
+    '''
+    solver = Solver()
+    board = [ [Int(f'board({i}, {j})') for j in range(8)] for i in range(8)]
+    # items in board can be 1 or 0, 1 meaning a presence of queen
+    solver.add([ And(board[i][j] >= 0, board[i][j] <= 1) for j in range(8) for i in range(8) ])
+    # items in row sums to 1
+    solver.add([ Sum(board[i]) == 1 for i in range(8) ])
+    # items in col sums to 1
+    solver.add([ Sum([ board[i][j] for i in range(8) ]) == 1 for j in range(8) ])
+    # diagonals
+    for i in range(8):
+        for j in range(8):
+            solver.add(Sum([ board[i + k][j + k] for k in range(8) if i + k < 8 and j + k < 8 ]) <= 1)
+            solver.add(Sum([ board[i + k][j - k] for k in range(8) if i + k < 8 and j - k >= 0]) <= 1)
+
+    solver.check()
+    m = solver.model()
+    solution = [ [ m.evaluate(board[i][j]) for j in range(8) ] for i in range(8) ]
+    print_matrix(solution)
+
