@@ -101,3 +101,19 @@ def eight_queens():
     solution = [ [ m.evaluate(board[i][j]) for j in range(8) ] for i in range(8) ]
     print_matrix(solution)
 
+
+def fifteen_puzzle():
+    '''
+    move tiles in grid to order the tiles from 1 to 15.
+    adjacent tile can slide to the empty space
+    '''
+    # game state with 0 representing the empty space
+    game = (
+        (0, 10, 8 , 9),
+        (14, 4, 6, 13),
+        (1, 12, 3, 11),
+        (2, 15, 7, 5),
+        )
+    solver = Solver()
+    #TODO: 
+    pass
